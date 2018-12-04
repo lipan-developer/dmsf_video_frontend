@@ -9,7 +9,7 @@ import { HttpClient,HttpHeaders } from "@angular/common/http"
 })
 export class HomeComponent implements OnInit {
 
-  test:any;
+  data:any=[];
 
   headers=new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' })
 
@@ -17,8 +17,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.test = this.httpClient.post("http://127.0.0.1:8080/video/listPage",this.headers).subscribe(data=>console.info(data))
-    // console.info(this.test)
+    this.httpClient.post("http://127.0.0.1:8080/video/listPage", null).subscribe(data=>this.data = data)
   }
 
 
