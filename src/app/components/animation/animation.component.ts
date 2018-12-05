@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnimationService } from '../../services/animation/animation.service'
 
 @Component({
   selector: 'app-animation',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnimationComponent implements OnInit {
 
-  constructor() { }
+  data:any = []
+
+  constructor(private animationService:AnimationService) { }
 
   ngOnInit() {
+    this.animationService.listPage().subscribe(data => this.data = data)
   }
 
 }

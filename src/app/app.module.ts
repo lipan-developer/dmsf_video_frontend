@@ -8,9 +8,12 @@ import { HomeComponent } from './components/home/home.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { AnimationComponent } from './components/animation/animation.component';
 import { TelevisionComponent } from './components/television/television.component';
-import { HomeService } from './services/home.service';
 import { CommonComponent } from './components/common/common.component';
 
+import { HomeService } from './services/home/home.service';
+import { AnimationService } from './services/animation/animation.service';
+import { MovieService } from './services/movie/movie.service';
+import { TelevisionService } from './services/television/television.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { CommonComponent } from './components/common/common.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [HomeService],
+  providers: [HomeService
+              ,AnimationService
+              ,MovieService
+              ,TelevisionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

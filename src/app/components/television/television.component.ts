@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TelevisionService } from '../../services/television/television.service'
 
 @Component({
   selector: 'app-television',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TelevisionComponent implements OnInit {
 
-  constructor() { }
+  data:any = []
+
+  constructor(private televisionService:TelevisionService) { }
+  
 
   ngOnInit() {
+    this.televisionService.listPage().subscribe(data => (this.data = data))
   }
 
 }
