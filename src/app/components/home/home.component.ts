@@ -11,13 +11,12 @@ export class HomeComponent implements OnInit {
 
   data:any=[];
 
-  headers=new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' })
 
   constructor(private homeService:HomeService,private httpClient:HttpClient) { }
 
   ngOnInit() {
-
-    this.httpClient.post("http://127.0.0.1:8080/video/listPage", null).subscribe(data=>this.data = data)
+    this.homeService.listPage().subscribe(data=>this.data = data)
+    // this.httpClient.post("http://127.0.0.1:8080/video/listPage", null).subscribe(data=>this.data = data)
   }
 
 

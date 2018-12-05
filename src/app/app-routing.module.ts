@@ -12,6 +12,9 @@ const routes: Routes = [
   {path:'television',component:TelevisionComponent},
   {
     path:'',redirectTo:'/home',pathMatch:'full'
+  },
+  {
+    path:'**',component:HomeComponent
   }
 ];
 

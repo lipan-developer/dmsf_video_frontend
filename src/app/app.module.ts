@@ -9,6 +9,7 @@ import { MovieComponent } from './components/movie/movie.component';
 import { AnimationComponent } from './components/animation/animation.component';
 import { TelevisionComponent } from './components/television/television.component';
 import { HomeService } from './services/home.service';
+import { CommonComponent } from './components/common/common.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { HomeService } from './services/home.service';
     HomeComponent,
     MovieComponent,
     AnimationComponent,
-    TelevisionComponent
+    TelevisionComponent,
+    CommonComponent
   ],
   imports: [
     BrowserModule,
