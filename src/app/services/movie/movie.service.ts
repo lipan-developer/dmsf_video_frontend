@@ -9,6 +9,6 @@ export class MovieService {
   constructor(private httpClient:HttpClient) { }
 
   listPage(){
-    return this.httpClient.post(environment.requestUrl+"/video/listPage", null)
+    return this.httpClient.post(environment.requestUrl+"/movie/listPage", null)
   }
 }
