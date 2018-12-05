@@ -14,6 +14,7 @@ import { HomeService } from './services/home/home.service';
 import { AnimationService } from './services/animation/animation.service';
 import { MovieService } from './services/movie/movie.service';
 import { TelevisionService } from './services/television/television.service';
+import { DetailsComponent } from './components/details/details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TelevisionService } from './services/television/television.service';
     MovieComponent,
     AnimationComponent,
     TelevisionComponent,
-    CommonComponent
+    CommonComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
