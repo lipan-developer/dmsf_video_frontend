@@ -3,12 +3,12 @@
       <div class="row">
         <div class="col-sm-6 col-md-4" *ngFor="let item of data.data" >
             <div class="thumbnail">
-              <img data-src="holder.js/100%x200" alt="100%x200" src="../../../assets/pictures/1.jpg"  data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
+              <img data-src="holder.js/100%x200" alt="100%x200" src='{{item.picture}}'  data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
               <div class="caption">
                 <h3>{{item.title}}</h3>
                 <p>{{item.actor}}</p>
                 <p>{{item.describeInfo}}</p>
-                <p><a href="#" class="btn btn-primary" role="button">点赞</a> <a href="#" class="btn btn-default" role="button">播放</a></p>
+                <p><a href="#" class="btn btn-primary" role="button">点赞</a> <a href="#" routerLink="/home/details/0/{{item.tableKey}}"  class="btn btn-default" role="button">播放</a></p>
               </div>
             </div>
           </div>
@@ -37,3 +37,4 @@
       </li>
     </ul>
   </nav>
+  <router-outlet></router-outlet>

@@ -15,6 +15,12 @@ import { AnimationService } from './services/animation/animation.service';
 import { MovieService } from './services/movie/movie.service';
 import { TelevisionService } from './services/television/television.service';
 import { DetailsComponent } from './components/details/details.component';
+import { DetailsService } from './services/details/details.service'
+
+import {VgCoreModule} from 'videogular2/core';
+import {VgControlsModule} from 'videogular2/controls';
+import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+import {VgBufferingModule} from 'videogular2/buffering';
 
 @NgModule({
   declarations: [
@@ -29,12 +35,17 @@ import { DetailsComponent } from './components/details/details.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   providers: [HomeService
               ,AnimationService
               ,MovieService
-              ,TelevisionService],
+              ,TelevisionService,
+              DetailsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

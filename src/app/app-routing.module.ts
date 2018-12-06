@@ -4,12 +4,17 @@ import { HomeComponent } from './components/home/home.component'
 import { MovieComponent } from './components/movie/movie.component'
 import { AnimationComponent } from './components/animation/animation.component'
 import { TelevisionComponent } from './components/television/television.component'
+import { DetailsComponent } from './components/details/details.component'
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'movie',component:MovieComponent},
   {path:'animation',component:AnimationComponent},
   {path:'television',component:TelevisionComponent},
+  {path:'home/details/:type/:id',component:DetailsComponent},
+  {path:'movie/details/:type/:id',component:DetailsComponent},
+  {path:'television/details/:type/:id',component:DetailsComponent},
+  {path:'animation/details/:type/:id',component:DetailsComponent},
   {
     path:'',redirectTo:'/home',pathMatch:'full'
   },
