@@ -9,15 +9,57 @@ import { HomeService } from '../../services/home/home.service'
 export class HomeComponent implements OnInit {
 
   data:any=[];
+  hotMovies:object = {
+    data:[]
+  }
+  hotTelevisions:object = {
+    data:[]
+  }
+  hotAnimations:object = {
+    data:[]
+  }
+  hots:object = {
+    data:[]
+  }
 
+  openMovie:boolean = false
+  openTelevision:boolean = false
+  openAnimation:boolean = false
 
   constructor(private homeService:HomeService) { }
 
   ngOnInit() {
     this.homeService.listPage().subscribe(data=>this.data = data)
+    this.getHot3ForAll()
   }
 
+  getHotMovie(){
+    this.openMovie = !this.openMovie
+    if(this.openMovie){
+      this.homeService.getHotMovie().subscribe(data=>this.hotMovies = data)
+    }else{
+      this.hotMovies = { data:[] }
+    }
+   
+  }
+  getHotTelevision(){
+    this.openTelevision = !this.openTelevision
+    if(this.openTelevision){
+      this.homeService.getHotTelevision().subscribe(data=>this.hotTelevisions = data)
+    }else{
+      this.hotTelevisions = {data:[]}
+    }
+  }
+  getHotAnimation(){
+    this.openAnimation = !this.openAnimation
+    if(this.openAnimation){
+      this.homeService.getHotAnimation().subscribe(data=>this.hotAnimations = data)
+    }else{
+      this.hotAnimations = {data:[]}
+    }
+  }
 
-
-
+  getHot3ForAll(){
+    this.homeService.getHot3ForAll().subscribe(data=>this.hots = data)
+  }
 }

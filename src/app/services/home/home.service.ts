@@ -12,4 +12,19 @@ export class HomeService {
   listPage(){
     return this.httpClient.post(environment.requestUrl+"/home/listPage", null)
   }
+
+  getHotMovie(){
+    return this.httpClient.post(environment.requestUrl+"/home/hotMovie", null)
+  }
+  getHotTelevision(){
+    return this.httpClient.post(environment.requestUrl+"/home/hotTelevision", null)
+  }
+  getHotAnimation(){
+    return this.httpClient.post(environment.requestUrl+"/home/hotAnimation", null)
+  }
+
+  getHot3ForAll(){
+    return this.httpClient.post(environment.requestUrl+"/home/hot3ForAll", null)
+  }
+
 }
