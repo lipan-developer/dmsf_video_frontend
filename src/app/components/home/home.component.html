@@ -1,16 +1,9 @@
-<div id="carousel-example-generic" class="carousel slide " data-ride="carousel">
-    <!-- Indicators -->
-    <!-- <ol class="carousel-indicators">
-      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    </ol> -->
-  
-    <!-- Wrapper for slides -->
+<div id="carousel-example-generic" class="carousel slide " data-ride="carousel" *ngIf="hots.data">
+
     <!-- 电影海报激活 -->
     <div class="carousel-inner" role="listbox">
         <div class="item active" >
-            <img [src]='hots.data[0].picture' [alt]='hots.data[0].title'>
+            <img src='{{hots.data[0].picture}}' [alt]='hots.data[0].title'>
             <div class="carousel-caption">
               {{hots.data[0].describeInfo}}
             </div>
@@ -18,14 +11,14 @@
     
   <!-- 电视剧海报 -->
         <div class="item" >
-            <img [src]='hots.data[1].picture' [alt]='hots.data[1].title'>
+            <img src='{{hots.data[1].picture}}' [alt]='hots.data[1].title'>
             <div class="carousel-caption">
               {{hots.data[1].describeInfo}}
             </div>
           </div>
   <!-- 动漫海报 -->
         <div class="item" >
-            <img [src]='hots.data[2].picture' [alt]='hots.data[2].title'>
+            <img src='{{hots.data[2].picture}}' [alt]='hots.data[2].title'>
             <div class="carousel-caption">
               {{hots.data[2].describeInfo}}
             </div>
@@ -49,17 +42,17 @@
       <!-- 侧边栏 -->
       <div class="col-md-2" style="border-right:1px solid #000; text-align: left">
 
-        <button class="btn btn-default col-md-12"  (click) = "getHotMovie()">电影排行</button>
+        <button class="btn btn-info col-md-12"  (click) = "getHotMovie()">电影排行</button>
         <span *ngIf="openMovie">
           <button class="btn btn-default col-md-12"  routerLink="/home/details/1/{{item.tableKey}}"  *ngFor="let item of hotMovies.data"  > {{item.title}}</button>
         </span>
         <br>
-        <button class="btn btn-default col-md-12" (click)="getHotTelevision()">影视排行</button>
+        <button class="btn btn-info col-md-12" (click)="getHotTelevision()">影视排行</button>
         <span *ngIf="openTelevision">
             <button class="btn btn-default col-md-12"  routerLink="/home/details/2/{{item.tableKey}}"   *ngFor="let item of hotTelevisions.data"> {{item.title}}</button>
           </span>
         <br>
-        <button class="btn btn-default col-md-12"  (click)="getHotAnimation()">动漫排行</button>
+        <button class="btn btn-info col-md-12"  (click)="getHotAnimation()">动漫排行</button>
         <span *ngIf="openAnimation">
             <button class="btn btn-default col-md-12"  routerLink="/home/details/3/{{item.tableKey}}"  *ngFor="let item of hotAnimations.data"> {{item.title}}</button>
           </span>

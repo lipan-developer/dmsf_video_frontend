@@ -11,4 +11,13 @@ export class MovieService {
   listPage(){
     return this.httpClient.post(environment.requestUrl+"/movie/listPage", null)
   }
+
+  getNewMovie(){
+    return this.httpClient.post(environment.requestUrl+"/movie/newMovie", null)
+  }
+
+
+  getHotMovie(){
+    return this.httpClient.post(environment.requestUrl+"/movie/hotMovie", null)
+  }
 }

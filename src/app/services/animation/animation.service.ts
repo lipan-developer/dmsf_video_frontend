@@ -12,4 +12,13 @@ export class AnimationService {
   listPage(){
     return this.httpClient.post(environment.requestUrl+"/animation/listPage", null)
   }
+
+
+  getNewAnimation(){
+    return this.httpClient.post(environment.requestUrl+"/animation/newAnimation", null)
+  }
+
+  getHotAnimation(){
+    return this.httpClient.post(environment.requestUrl+"/animation/hotAnimation", null)
+  }
 }

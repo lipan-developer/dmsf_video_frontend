@@ -9,11 +9,37 @@ import { AnimationService } from '../../services/animation/animation.service'
 export class AnimationComponent implements OnInit {
 
   data:any = []
+  newAnimations:object = {
+    data:[]
+  }
+  hotAnimations:object = {
+    data:[]
+  }
+  openNewAnimation:boolean = false
+  openHotAnimation:boolean = false
 
   constructor(private animationService:AnimationService) { }
 
   ngOnInit() {
     this.animationService.listPage().subscribe(data => this.data = data)
   }
+
+  getNewAnimation(){
+    this.openNewAnimation = !this.openNewAnimation
+    if(this.openNewAnimation){
+      this.animationService.getNewAnimation().subscribe(data=>this.newAnimations = data)
+    }else{
+      this.newAnimations = { data:[] }
+    }
+  }
+  getHotAnimation(){
+    this.openHotAnimation = !this.openHotAnimation
+    if(this.openHotAnimation){
+      this.animationService.getHotAnimation().subscribe(data=>this.hotAnimations = data)
+    }else{
+      this.hotAnimations = { data:[] }
+    }
+  }
+
 
 }

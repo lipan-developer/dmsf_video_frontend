@@ -13,4 +13,13 @@ export class TelevisionService {
   listPage(){
     return this.httpClient.post(environment.requestUrl+"/television/listPage", null)
   }
+
+
+  getNewTelevision(){
+    return this.httpClient.post(environment.requestUrl+"/television/newTelevision", null)
+  }
+
+  getHotTelevision(){
+    return this.httpClient.post(environment.requestUrl+"/television/hotTelevision", null)
+  }
 }

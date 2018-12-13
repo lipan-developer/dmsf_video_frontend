@@ -8,18 +8,36 @@ import { HomeService } from '../../services/home/home.service'
 })
 export class HomeComponent implements OnInit {
 
-  data:any=[];
+  data:object = {
+    data:[{
+      picture:String
+    }]
+  }
   hotMovies:object = {
-    data:[]
+    data:[{
+      picture:String
+    }]
   }
   hotTelevisions:object = {
-    data:[]
+    data:[{
+      picture:String
+    }]
   }
   hotAnimations:object = {
-    data:[]
+    data:[{
+      picture:String
+    }]
   }
   hots:object = {
-    data:[]
+    data:[{
+      picture:String
+    },
+    {
+      picture:String
+    },{
+      picture:String
+    }
+  ]
   }
 
   openMovie:boolean = false
