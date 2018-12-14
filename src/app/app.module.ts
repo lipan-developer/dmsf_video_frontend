@@ -16,6 +16,7 @@ import { MovieService } from './services/movie/movie.service';
 import { TelevisionService } from './services/television/television.service';
 import { DetailsComponent } from './components/details/details.component';
 import { DetailsService } from './services/details/details.service'
+import { CommonService } from './services/common/common.service'
 
 import {VgCoreModule} from 'videogular2/core';
 import {VgControlsModule} from 'videogular2/controls';
@@ -46,7 +47,8 @@ import {VgBufferingModule} from 'videogular2/buffering';
               ,AnimationService
               ,MovieService
               ,TelevisionService,
-              DetailsService],
+              DetailsService,
+              CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

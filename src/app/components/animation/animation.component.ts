@@ -17,13 +17,16 @@ export class AnimationComponent implements OnInit {
   }
   openNewAnimation:boolean = false
   openHotAnimation:boolean = false
-
+  type:String = '3'
   constructor(private animationService:AnimationService) { }
 
   ngOnInit() {
     this.animationService.listPage().subscribe(data => this.data = data)
   }
 
+  provinceOut(event: any) {
+    this.data = event
+  }
   getNewAnimation(){
     this.openNewAnimation = !this.openNewAnimation
     if(this.openNewAnimation){

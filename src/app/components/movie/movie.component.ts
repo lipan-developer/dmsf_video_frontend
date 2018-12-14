@@ -12,6 +12,7 @@ export class MovieComponent implements OnInit {
   data:any = []
   openHotMovie:boolean = false
   openNewMovie:boolean = false
+  type:String = '1'
   newMovies:object = {
     data:[]
   }
@@ -20,7 +21,9 @@ export class MovieComponent implements OnInit {
     data:[]
   }
 
-
+  provinceOut(event: any) {
+    this.data = event
+  }
   ngOnInit() {
     this.movieService.listPage().subscribe(data=>(this.data = data))
   }

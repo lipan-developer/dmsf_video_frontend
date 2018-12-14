@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { HomeService } from '../../services/home/home.service'
 
 @Component({
@@ -8,76 +8,97 @@ import { HomeService } from '../../services/home/home.service'
 })
 export class HomeComponent implements OnInit {
 
-  data:object = {
-    data:[{
-      picture:String
+
+  data: any = {
+    data:{
+      totalPages:String,
+      content: [{
+        picture: String
+      }]
+    }
+  }
+  hotMovies: object = {
+    data: [{
+      picture: String
     }]
   }
-  hotMovies:object = {
-    data:[{
-      picture:String
+  hotTelevisions: object = {
+    data: [{
+      picture: String
     }]
   }
-  hotTelevisions:object = {
-    data:[{
-      picture:String
+  hotAnimations: object = {
+    data: [{
+      picture: String
     }]
   }
-  hotAnimations:object = {
-    data:[{
-      picture:String
-    }]
-  }
-  hots:object = {
-    data:[{
-      picture:String
+  hots: object = {
+    data: [{
+      picture: String
     },
     {
-      picture:String
-    },{
-      picture:String
+      picture: String
+    }, {
+      picture: String
     }
-  ]
+    ]
   }
 
-  openMovie:boolean = false
-  openTelevision:boolean = false
-  openAnimation:boolean = false
-
-  constructor(private homeService:HomeService) { }
+  openMovie: boolean = false
+  openTelevision: boolean = false
+  openAnimation: boolean = false
+  type: String = "0"
+  totalPages: any = [];
+  constructor(private homeService: HomeService) { }
 
   ngOnInit() {
-    this.homeService.listPage().subscribe(data=>this.data = data)
+    this.getListPage(1,10)
     this.getHot3ForAll()
   }
+  provinceOut(event: any) {
+    this.data = event
+  }
 
-  getHotMovie(){
+  getListPage(page:Number,size:Number){
+    this.homeService.listPage(page,size).subscribe(data => {
+      this.totalPages = []
+      this.data = data;
+       console.info(this.data)
+       for(let i = 1; i <= this.data.data.totalPages; i++) {
+         this.totalPages.push(i);
+       }
+      })
+  }
+
+  getHotMovie() {
     this.openMovie = !this.openMovie
-    if(this.openMovie){
-      this.homeService.getHotMovie().subscribe(data=>this.hotMovies = data)
-    }else{
-      this.hotMovies = { data:[] }
+    if (this.openMovie) {
+      this.homeService.getHotMovie().subscribe(data => this.hotMovies = data)
+    } else {
+      this.hotMovies = { data: [] }
     }
-   
+
   }
-  getHotTelevision(){
+  getHotTelevision() {
     this.openTelevision = !this.openTelevision
-    if(this.openTelevision){
-      this.homeService.getHotTelevision().subscribe(data=>this.hotTelevisions = data)
-    }else{
-      this.hotTelevisions = {data:[]}
+    if (this.openTelevision) {
+      this.homeService.getHotTelevision().subscribe(data => this.hotTelevisions = data)
+    } else {
+      this.hotTelevisions = { data: [] }
     }
   }
-  getHotAnimation(){
+  getHotAnimation() {
     this.openAnimation = !this.openAnimation
-    if(this.openAnimation){
-      this.homeService.getHotAnimation().subscribe(data=>this.hotAnimations = data)
-    }else{
-      this.hotAnimations = {data:[]}
+    if (this.openAnimation) {
+      this.homeService.getHotAnimation().subscribe(data => this.hotAnimations = data)
+    } else {
+      this.hotAnimations = { data: [] }
     }
   }
 
-  getHot3ForAll(){
-    this.homeService.getHot3ForAll().subscribe(data=>this.hots = data)
+  getHot3ForAll() {
+    this.homeService.getHot3ForAll().subscribe(data => this.hots = data)
   }
+
+
 }

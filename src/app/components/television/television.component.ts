@@ -11,6 +11,7 @@ export class TelevisionComponent implements OnInit {
   data:any = []
   openNewTelevision:boolean = false
   openHotTelevision:boolean = false
+  type:String = '2'
   newTelevisions:object = {
     data:[]
   }
@@ -25,7 +26,9 @@ export class TelevisionComponent implements OnInit {
     this.televisionService.listPage().subscribe(data => (this.data = data))
   }
 
-
+  provinceOut(event: any) {
+    this.data = event
+  }
   getNewTelevision(){
     this.openNewTelevision = !this.openNewTelevision
     if(this.openNewTelevision){

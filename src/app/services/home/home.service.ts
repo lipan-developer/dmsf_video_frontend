@@ -9,8 +9,8 @@ export class HomeService {
 
   constructor(private httpClient:HttpClient) { }
 
-  listPage(){
-    return this.httpClient.post(environment.requestUrl+"/home/listPage", null)
+  listPage(page:Number,size:Number){
+    return this.httpClient.post(`${environment.requestUrl}/home/listPage?page=${page}&size=${size}`, null)
   }
 
   getHotMovie(){
@@ -26,5 +26,12 @@ export class HomeService {
   getHot3ForAll(){
     return this.httpClient.post(environment.requestUrl+"/home/hot3ForAll", null)
   }
+
+
+  getSeachResult(searchValue:String){
+    return this.httpClient.post(environment.requestUrl+"/home/getSeachResult?searchValue="+searchValue, null)
+
+  }
+
 
 }
