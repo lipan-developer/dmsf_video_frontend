@@ -7,8 +7,15 @@ import { AnimationService } from '../../services/animation/animation.service'
   styleUrls: ['./animation.component.css']
 })
 export class AnimationComponent implements OnInit {
-
-  data:any = []
+  data:any = {
+    data:{
+      totalPages:String,
+      content: [{
+        picture: String
+      }]
+    }
+  }
+  
   newAnimations:object = {
     data:[]
   }
@@ -18,10 +25,21 @@ export class AnimationComponent implements OnInit {
   openNewAnimation:boolean = false
   openHotAnimation:boolean = false
   type:String = '3'
+  totalPages:any = []
   constructor(private animationService:AnimationService) { }
 
   ngOnInit() {
-    this.animationService.listPage().subscribe(data => this.data = data)
+    this.getListPage(1,10)
+  }
+
+  getListPage(page:Number,size:Number){
+    this.animationService.listPage(page,size).subscribe(data => {
+      this.totalPages = []
+      this.data = data;
+       for(let i = 1; i <= this.data.data.totalPages; i++) {
+         this.totalPages.push(i);
+       }
+      })
   }
 
   provinceOut(event: any) {

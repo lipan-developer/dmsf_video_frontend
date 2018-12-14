@@ -10,8 +10,8 @@ export class TelevisionService {
 
   constructor(private httpClient:HttpClient) { }
 
-  listPage(){
-    return this.httpClient.post(environment.requestUrl+"/television/listPage", null)
+  listPage(page:Number,size:Number){
+    return this.httpClient.post(`${environment.requestUrl}/television/listPage?page=${page}&size=${size}`, null)
   }
 
 

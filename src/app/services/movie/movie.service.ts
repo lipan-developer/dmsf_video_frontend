@@ -9,7 +9,7 @@ export class MovieService {
   constructor(private httpClient:HttpClient) { }
 
   listPage(page:Number,size:Number){
-    return this.httpClient.post(`${environment.requestUrl}"/movie/listPage?page=${page}&size=${size}`, null)
+    return this.httpClient.post(`${environment.requestUrl}/movie/listPage?page=${page}&size=${size}`, null)
   }
 
   getNewMovie(){

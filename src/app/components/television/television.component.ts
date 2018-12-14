@@ -8,7 +8,14 @@ import { TelevisionService } from '../../services/television/television.service'
 })
 export class TelevisionComponent implements OnInit {
 
-  data:any = []
+   data:any = {
+    data:{
+      totalPages:String,
+      content: [{
+        picture: String
+      }]
+    }
+  }
   openNewTelevision:boolean = false
   openHotTelevision:boolean = false
   type:String = '2'
@@ -18,12 +25,23 @@ export class TelevisionComponent implements OnInit {
   hotTelevisions:object = {
     data:[]
   }
-
+  totalPages:any = []
   constructor(private televisionService:TelevisionService) { }
   
 
   ngOnInit() {
-    this.televisionService.listPage().subscribe(data => (this.data = data))
+    this.getListPage(1,10)
+  }
+
+
+getListPage(page:Number,size:Number){
+    this.televisionService.listPage(page,size).subscribe(data => {
+      this.totalPages = []
+      this.data = data;
+       for(let i = 1; i <= this.data.data.totalPages; i++) {
+         this.totalPages.push(i);
+       }
+      })
   }
 
   provinceOut(event: any) {

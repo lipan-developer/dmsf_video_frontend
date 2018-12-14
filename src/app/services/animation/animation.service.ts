@@ -9,8 +9,8 @@ export class AnimationService {
 
   constructor(private httpClient:HttpClient) { }
 
-  listPage(){
-    return this.httpClient.post(environment.requestUrl+"/animation/listPage", null)
+  listPage(page:Number,size:Number){
+    return this.httpClient.post(`${environment.requestUrl}/animation/listPage?page=${page}&size=${size}`, null)
   }
 
 

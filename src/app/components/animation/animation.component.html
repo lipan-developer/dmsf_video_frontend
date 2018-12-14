@@ -27,7 +27,7 @@
       <div class="container-fluid">
         <div class="bs-example" data-example-id="thumbnails-with-custom-content">
           <div class="row">
-            <div class="col-sm-6 col-md-3" *ngFor="let item of data.data">
+            <div class="col-sm-6 col-md-3" *ngFor="let item of data.data.content">
               <div class="thumbnail">
                 <img data-src="holder.js/100%x200" alt="100%x200" src='{{item.picture}}' data-holder-rendered="true"
                   style="height: 200px; width: 100%; display: block;">
@@ -49,18 +49,14 @@
 <!-- 分页条 -->
 <nav aria-label="Page navigation">
   <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
+    <li >
+      <a (click)="getListPage(1,10)" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
+    <li *ngFor="let item of totalPages"><a (click)="getListPage(item,10)">{{item}}</a></li>
+    <li >
+      <a (click)="getListPage(data.data.totalPages,10)" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>

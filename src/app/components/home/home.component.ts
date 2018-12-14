@@ -63,7 +63,6 @@ export class HomeComponent implements OnInit {
     this.homeService.listPage(page,size).subscribe(data => {
       this.totalPages = []
       this.data = data;
-       console.info(this.data)
        for(let i = 1; i <= this.data.data.totalPages; i++) {
          this.totalPages.push(i);
        }

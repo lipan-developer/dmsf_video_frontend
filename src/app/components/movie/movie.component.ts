@@ -9,13 +9,21 @@ import { MovieService } from '../../services/movie/movie.service'
 export class MovieComponent implements OnInit {
 
   constructor(private movieService:MovieService) { }
-  data:any = []
+  data: any = {
+    data:{
+      totalPages:String,
+      content: [{
+        picture: String
+      }]
+    }
+  }
   openHotMovie:boolean = false
   openNewMovie:boolean = false
   type:String = '1'
   newMovies:object = {
     data:[]
   }
+  totalPages:any = []
 
   hotMovies:object = {
     data:[]
@@ -25,8 +33,19 @@ export class MovieComponent implements OnInit {
     this.data = event
   }
   ngOnInit() {
-    this.movieService.listPage().subscribe(data=>(this.data = data))
+    this.getListPage(1,10)
   }
+
+    getListPage(page:Number,size:Number){
+    this.movieService.listPage(page,size).subscribe(data => {
+      this.totalPages = []
+      this.data = data;
+       for(let i = 1; i <= this.data.data.totalPages; i++) {
+         this.totalPages.push(i);
+       }
+      })
+  }
+
 
 
   getNewMovie(){
