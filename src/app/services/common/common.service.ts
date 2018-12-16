@@ -11,7 +11,12 @@ export class CommonService {
 
 
   getSeachResult(searchValue:String,type:String){
-    return this.httpClient.post(`${environment.requestUrl}/dmsf/common/getSeachResult?searchValue=${searchValue}&type=${type}`,null)
+    return this.httpClient.post(`${environment.requestUrl}/dmsf/common/getSeachResult?searchValue=${searchValue}&type=${type}&page=1&size=10`,null)
+  }
+
+
+  getSeachResultListPage(searchValue:String,type:String,page:Number,size:Number){
+    return this.httpClient.post(`${environment.requestUrl}/dmsf/common/getSeachResult?searchValue=${searchValue}&type=${type}&page=${page}&size=${size}`,null)
   }
 
 }

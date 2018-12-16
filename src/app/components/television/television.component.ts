@@ -46,6 +46,10 @@ getListPage(page:Number,size:Number){
 
   provinceOut(event: any) {
     this.data = event
+    this.totalPages = []
+    for(let i = 1; i <= this.data.data.totalPages; i++) {
+       this.totalPages.push(i);
+     }
   }
   getNewTelevision(){
     this.openNewTelevision = !this.openNewTelevision

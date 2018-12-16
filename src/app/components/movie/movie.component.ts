@@ -31,6 +31,10 @@ export class MovieComponent implements OnInit {
 
   provinceOut(event: any) {
     this.data = event
+    this.totalPages = []
+    for(let i = 1; i <= this.data.data.totalPages; i++) {
+       this.totalPages.push(i);
+     }
   }
   ngOnInit() {
     this.getListPage(1,10)

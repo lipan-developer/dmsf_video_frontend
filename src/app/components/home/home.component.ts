@@ -57,13 +57,18 @@ export class HomeComponent implements OnInit {
   }
   provinceOut(event: any) {
     this.data = event
+    this.totalPages = []
+      for(let i = 1; i <= this.data.data.totalPages; i++) {
+         this.totalPages.push(i);
+       }
+      
   }
 
   getListPage(page:Number,size:Number){
     this.homeService.listPage(page,size).subscribe(data => {
       this.totalPages = []
       this.data = data;
-       for(let i = 1; i <= this.data.data.totalPages; i++) {
+      for(let i = 1; i <= this.data.data.totalPages; i++) {
          this.totalPages.push(i);
        }
       })

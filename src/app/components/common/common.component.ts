@@ -11,9 +11,7 @@ export class CommonComponent implements OnInit {
   
   searchValue: String = ''
 
-  data: any = {
-    data:[]
-  }
+
   searchResp:object = {
     data:[]
   }
@@ -27,8 +25,15 @@ export class CommonComponent implements OnInit {
 
   getSeachResult() {
     this.commonService.getSeachResult(this.searchValue,this.type).subscribe(data => {
-      this.data = data
-      this.provinceOut.emit(this.data);
+      this.provinceOut.emit(data);
     })
   }
+
+
+  getListPage(type:String,page:Number,size:Number){
+    this.commonService.getSeachResultListPage(this.searchValue,type,page,size).subscribe(data => {
+      this.provinceOut.emit(data);
+    })
+  }
+
 }
