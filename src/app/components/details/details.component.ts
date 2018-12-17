@@ -14,7 +14,8 @@ export class DetailsComponent implements OnInit {
   type: any
   data: any = {
     data: {
-      picture: String
+      picture: String,
+      salves:[{url:String}]
     }
   };
   safeURL: SafeResourceUrl;
@@ -27,11 +28,15 @@ export class DetailsComponent implements OnInit {
     this.detailsService.getVideoDetails(this.id).subscribe(
       (data: any) => {
         this.data = data;
-        this.safeURL = this.data.data.url
+        this.safeURL = this.data.data.salves[0].url
       }) //http://xunleib.zuida360.com/1812/翻唱版本.HD1280高清中英双字版.mp4
   }
 
   ngOnInit() {
   }
 
+
+  changeSafeURL(url:String){
+    this.safeURL = url
+  }
 }

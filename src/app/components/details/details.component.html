@@ -1,73 +1,85 @@
 <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" routerLink = '/home' routerLinkActive = 'active'>主页</a>
-          </div>
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li >
-                <a routerLink = '/movie' routerLinkActive = 'active'>电影 
-                  <!-- <span class="sr-only" >(current)</span> -->
-                </a>
-              </li>
-              <li><a routerLink = '/television' routerLinkActive = 'active'>电视剧</a></li>
-              <li><a routerLink = '/animation' routerLinkActive = 'active'>动漫</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <!-- <form class="navbar-form navbar-left">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink='/home' routerLinkActive='active'>主页</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a routerLink='/movie' routerLinkActive='active'>电影
+            <!-- <span class="sr-only" >(current)</span> -->
+          </a>
+        </li>
+        <li><a routerLink='/television' routerLinkActive='active'>电视剧</a></li>
+        <li><a routerLink='/animation' routerLinkActive='active'>动漫</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- <form class="navbar-form navbar-left">
                       <input type="text" [(ngModel)]="searchValue" name = "searchValue" class="form-control" placeholder="Search">
                     <button (click)="getSeachResult()" class="btn btn-default">搜索</button>
                   </form> -->
-              <li><a href="#">帮助</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">登录 <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">注册</a></li>
-                  <li><a href="#">注销</a></li>
-                  <li><a href="#">设置</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">联系我们</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
+        <li><a href="#">帮助</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">登录
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">注册</a></li>
+            <li><a href="#">注销</a></li>
+            <li><a href="#">设置</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">联系我们</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 <div class="container-fluid">
-  <div class="row" >
-       <!-- 侧边栏 -->
-        <div class="col-md-4" style="border-right:1px solid #000; text-align: left">
-            <br>
-            <span style="font-weight:bold ">片名: {{data.data.title}}</span>
-            <br>
-            <span style="font-weight:bold ">演员: {{data.data.actor}}</span>
-            <br>
-            <span style="font-weight:bold ">类型: </span>
-                <span *ngIf="data.data.type == 1">电影</span>
-                <span *ngIf="data.data.type == 2">电影</span>
-                <span *ngIf="data.data.type == 3">电视剧</span>
-            <br>
-            <img [src]='data.data.picture' />
-            <br>
-            <span style="font-weight:bold ">上映时间: </span>{{data.data.showTime}}
-            <br>
-            <span style="font-weight:bold ">影片介绍: </span>{{data.data.describeInfo}}
-            <br>
-        </div>
-        <div class="col-md-8" *ngIf="safeURL">
-            <vg-player class="col-md-12" style="background-color: rgba(255,255,255,0.2)">
-                <video [vgMedia]="media" #media id="singleVideo" preload="auto"  controls>
-                    <source [src]="safeURL" type="video/mp4">
-                </video>
-            </vg-player>
-        </div>
+  <div class="row">
+    <!-- 侧边栏 -->
+    <div class="col-md-4" style="border-right:1px solid #000; text-align: left">
+      <br>
+      <span style="font-weight:bold ">片名: {{data.data.title}}</span>
+      <br>
+      <span style="font-weight:bold ">演员: {{data.data.actor}}</span>
+      <br>
+      <span style="font-weight:bold ">类型: </span>
+      <span *ngIf="data.data.type == 1">电影</span>
+      <span *ngIf="data.data.type == 2">电影</span>
+      <span *ngIf="data.data.type == 3">电视剧</span>
+      <br>
+      <img data-src="holder.js/100%x200" alt="100%x200" style="height: 231px; width: 306px; display: block;" [src]='data.data.picture' />
+      <br>
+      <span style="font-weight:bold ">上映时间: </span>{{data.data.showTime}}
+      <br>
+      <span style="font-weight:bold ">影片介绍: </span>{{data.data.describeInfo}}
+      <br>
     </div>
+    <div class="col-md-8" *ngIf="safeURL">
+      <vg-player class="col-md-12" style="background-color: rgba(255,255,255,0.2)">
+        <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+          <source [src]="safeURL" type="video/mp4">
+        </video>
+      </vg-player>
+    </div>
+  </div>
+</div>
+
+<div style="height:20px"></div>
+
+<div class="container">
+  <div class="row">
+  <div *ngFor="let item of data.data.salves;let i=index" >
+    <button class="col-md-1 btn btn-default" (click)="changeSafeURL(item.url)" >第{{i+1}}集</button>
+  </div>
+</div>
 </div>
