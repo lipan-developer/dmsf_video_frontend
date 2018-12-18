@@ -25,13 +25,14 @@
                 <input type="text" [(ngModel)]="searchValue" name = "searchValue" class="form-control" placeholder="Search">
               <button (click)="getSeachResult()" class="btn btn-default">搜索</button>
             </form>
+        <li *ngIf="nickName"><a href="#">欢迎您,{{nickName}}</a></li>
         <li><a href="#">帮助</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">登录 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">注册</a></li>
-            <li><a href="#">注销</a></li>
-            <li><a href="#">设置</a></li>
+            <li><a routerLink="/user/details/1" >注册</a></li>
+            <li><a routerLink="/user/details/1">登录</a></li>
+            <li *ngIf="nickName"><a (click)="removeStorage()">注销</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">联系我们</a></li>
           </ul>
@@ -40,3 +41,4 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<router-outlet></router-outlet>

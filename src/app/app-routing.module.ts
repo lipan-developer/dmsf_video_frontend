@@ -5,6 +5,7 @@ import { MovieComponent } from './components/movie/movie.component'
 import { AnimationComponent } from './components/animation/animation.component'
 import { TelevisionComponent } from './components/television/television.component'
 import { DetailsComponent } from './components/details/details.component'
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
@@ -15,6 +16,8 @@ const routes: Routes = [
   {path:'movie/details/:type/:id',component:DetailsComponent},
   {path:'television/details/:type/:id',component:DetailsComponent},
   {path:'animation/details/:type/:id',component:DetailsComponent},
+  {path:'user/details/:tableKey',component:UserComponent},
+  {path:'user/edit',component:UserComponent},
   {
     path:'',redirectTo:'/home',pathMatch:'full'
   },

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { DetailsService } from '../../services/details/details.service'
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { StorageService } from '../../services/storage/storage.service'
 
 @Component({
   selector: 'app-details',
@@ -19,10 +20,13 @@ export class DetailsComponent implements OnInit {
     }
   };
   safeURL: SafeResourceUrl;
-
+  auth:String
+  nickName:String
+  
   constructor(private router: ActivatedRoute,
     private detailsService: DetailsService,
-    private sanitizer: DomSanitizer) {
+    private sanitizer: DomSanitizer,
+    private storageService:StorageService) {
     this.id = this.router.snapshot.paramMap.get('id');
     this.type = this.router.snapshot.paramMap.get('type');
     this.detailsService.getVideoDetails(this.id).subscribe(
@@ -33,10 +37,19 @@ export class DetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auth = this.storageService.getItem('auth')
+    this.nickName = this.storageService.getItem('nickName')
   }
 
 
   changeSafeURL(url:String){
     this.safeURL = url
+  }
+
+  removeStorage(){
+    this.storageService.removeItem('auth')
+    this.storageService.removeItem('nickName')
+    this.auth = ''
+    this.nickName = ''
   }
 }
