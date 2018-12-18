@@ -63,14 +63,6 @@
         <div class="col-md-3"><label for="password" >密码</label></div>
         <div class="col-md-9"> <input type="password" name="password" [(ngModel)]="password" class="form-control" id="exampleInputEmail1" placeholder="密码"></div>
     </div>
-    <div class="row" style="margin-top: 40px;">
-        <div class="col-md-3"><label for="repeatPassword" >确认密码</label></div>
-        <div class="col-md-9"> <input type="password" name="repeatPassword" [(ngModel)]="repeatPassword" class="form-control" id="exampleInputEmail1" placeholder="请输入刚输入的密码"></div>
-    </div>
-    <div class="row" style="margin-top: 40px;">
-        <div class="col-md-3"><label for="phone" >联系方式</label></div>
-        <div class="col-md-9"> <input type="text" class="form-control" [(ngModel)]="phone" name = "phone" id="exampleInputEmail1" placeholder="联系方式"></div>
-    </div>
-    <button type="button" (click)="editUser()" class="btn btn-default" style="margin-top: 40px;">提交</button>
+    <button type="button" (click)="getUser()" class="btn btn-default" style="margin-top: 40px;">提交</button>
   </form>
 </div>

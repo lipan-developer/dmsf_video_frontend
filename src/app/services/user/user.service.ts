@@ -19,4 +19,10 @@ export class UserService {
   }
 
 
+  getUser(nickName: String,
+    password: String){
+      return this.httpClient.post(`${environment.requestUrl}/dmsf/user/getUser?nickName=${nickName}&password=${password}`,null)
+  }
+
+
 }
