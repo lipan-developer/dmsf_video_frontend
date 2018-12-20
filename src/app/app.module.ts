@@ -19,6 +19,7 @@ import { DetailsService } from './services/details/details.service'
 import { CommonService } from './services/common/common.service'
 import { StorageService } from './services/storage/storage.service'
 import { UserService } from './services/user/user.service'
+import { ManageService } from './services/manage/manage.service'
 
 import {VgCoreModule} from 'videogular2/core';
 import {VgControlsModule} from 'videogular2/controls';
@@ -26,6 +27,7 @@ import {VgOverlayPlayModule} from 'videogular2/overlay-play';
 import {VgBufferingModule} from 'videogular2/buffering';
 import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/login/login.component';
+import { ManageComponent } from './components/manage/manage.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { LoginComponent } from './components/login/login.component';
     CommonComponent,
     DetailsComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    ManageComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { LoginComponent } from './components/login/login.component';
               DetailsService,
               CommonService,
               UserService,
-              StorageService],
+              StorageService,
+              ManageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

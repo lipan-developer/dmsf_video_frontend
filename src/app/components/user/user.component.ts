@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user/user.service'
 import { StorageService } from '../../services/storage/storage.service'
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -9,7 +9,7 @@ import { StorageService } from '../../services/storage/storage.service'
 })
 export class UserComponent implements OnInit {
 
-  constructor(private userService : UserService,private storageService:StorageService) { }
+  constructor(private userService : UserService,private storageService:StorageService,private router:Router) { }
 
   ngOnInit() {
     this.auth = this.storageService.getItem('auth')
@@ -39,7 +39,8 @@ export class UserComponent implements OnInit {
           this.storageService.setItem('auth','0')
           this.storageService.setItem('nickName',this.nickName)
         }
-        this.nickName = '',this.password = '',this.phone ='',this.repeatPassword = ''
+        this.password = '',this.phone ='',this.repeatPassword = ''
+        this.router.navigate(['home']); 
       })
   }
 

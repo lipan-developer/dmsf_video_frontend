@@ -19,6 +19,7 @@
         </li>
         <li><a routerLink = '/television' routerLinkActive = 'active'>电视剧</a></li>
         <li><a routerLink = '/animation' routerLinkActive = 'active'>动漫</a></li>
+        <li *ngIf="auth==1"><a routerLink = '/manage' routerLinkActive = 'active'>管理</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <form class="navbar-form navbar-left">
