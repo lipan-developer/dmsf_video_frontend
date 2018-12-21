@@ -45,6 +45,11 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+
+
+
+
+<div class="container-fluid">
 <div class="row" style="margin-bottom:20px;">
     <div class="col-md-3">
       <div class="input-group">
@@ -86,10 +91,13 @@
       <div class=" col-md-2"><button class="btn btn-primary col-md-6" (click)="searchResult()">查询</button><button class="btn btn-primary col-md-6" (click)="cancalSearch()">取消</button></div>
       <div></div>
   </div><!-- /.row -->
+<!-- </div> -->
+<!-- <div class="container-fluid"> -->
 <div class="row">
   <div class="col-md-10"></div>
-  <button class="col-md-2 btn btn-primary" style="margin-bottom:20px;">新增影片</button>
+  <button class="col-md-2 btn btn-primary" style="margin-bottom:20px;" (click)="openModal('')">新增影片</button>
 </div>
+
 <table class="table table-bordered .table-hover ">
   <tr class="info">
     <th style="text-align:center">名称</th>
@@ -109,7 +117,7 @@
     <td class=" col-md-2">{{item.smallDescible}}</td>
     <td class=" col-md-2">
       <div class="row">
-        <a class="col-md-3" type="button" (click)="expression">编辑</a>
+        <a class="col-md-3" type="button" (click)="openModal(item)">编辑</a>
         <a class="col-md-6" type="button" (click)="expression" >配置详情</a>
         <a class="col-md-3" type="button" (click)="expression">删除</a>
       </div>
@@ -133,3 +141,19 @@
     </li>
   </ul>
 </nav>
+
+
+   
+<bs-modal #modal cssClass="main-modal">
+  <bs-modal-header>
+      <h4 class="modal-title">I'm a modal!</h4>
+  </bs-modal-header>
+  <bs-modal-body>
+      Hello World!
+  </bs-modal-body>
+  <bs-modal-footer>
+      <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">取消</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close()">确定</button>
+  </bs-modal-footer>
+</bs-modal>
+</div>

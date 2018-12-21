@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { StorageService } from '../../services/storage/storage.service'
 import { ManageService } from '../../services/manage/manage.service'
+import { BsModalBodyComponent } from 'ng2-bs3-modal';
 
 @Component({
   selector: 'app-manage',
@@ -14,17 +15,20 @@ export class ManageComponent implements OnInit {
     this.auth = this.storageService.getItem('auth');
   }
 
+  @ViewChild("modal") modal
+
   nickName:String;
   auth:String;
   title:String
   actor:String
-  type:String
+  type:String = '0'
   data:any = {
     data:{
       content:[{}]
     }
   }
   totalPages:any
+  item:any
   ngOnInit() {
     this.getListPage(1,10);
   }
@@ -55,12 +59,16 @@ export class ManageComponent implements OnInit {
   }
 
 
-  searchResult(){
-    console.info(this.title)
-    console.info(this.actor)
-    console.info(this.type)
+  searchResult(page:Number,size:Number){
+    this.getListPage(page,size)
   }
 
 
+
+  openModal(item:Object){
+    this.item = item;
+    console.info(item)
+    this.modal.open()
+  }
 
 }
