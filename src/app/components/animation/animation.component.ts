@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnimationService } from '../../services/animation/animation.service'
+import { CommonService } from '../../services/common/common.service'
+import { StorageService } from '../../services/storage/storage.service'
 
 @Component({
   selector: 'app-animation',
@@ -26,7 +28,7 @@ export class AnimationComponent implements OnInit {
   openHotAnimation:boolean = false
   type:String = '3'
   totalPages:any = []
-  constructor(private animationService:AnimationService) { }
+  constructor(private animationService:AnimationService,private commonService : CommonService,private storageService :StorageService) { }
 
   ngOnInit() {
     this.getListPage(1,10)
@@ -66,5 +68,14 @@ export class AnimationComponent implements OnInit {
     }
   }
 
+  addsupport(tableKey:String){
+    let nickName = this.storageService.getItem('nickName')
+    if(!nickName) return ;
+    this.commonService.addsupport(tableKey).subscribe(
+      data=>{
+        this.getListPage(1,10)
+      }
+    )
+  }
 
 }

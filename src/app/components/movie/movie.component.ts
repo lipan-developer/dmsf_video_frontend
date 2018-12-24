@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../services/movie/movie.service'
+import { CommonService } from '../../services/common/common.service'
+import { StorageService } from '../../services/storage/storage.service'
 
 @Component({
   selector: 'app-movie',
@@ -8,7 +10,7 @@ import { MovieService } from '../../services/movie/movie.service'
 })
 export class MovieComponent implements OnInit {
 
-  constructor(private movieService:MovieService) { }
+  constructor(private movieService:MovieService,private commonService : CommonService,private storageService :StorageService) { }
   data: any = {
     data:{
       totalPages:String,
@@ -69,5 +71,15 @@ export class MovieComponent implements OnInit {
     }else{
       this.hotMovies = { data:[] }
     }
+  }
+
+  addsupport(tableKey:String){
+    let nickName = this.storageService.getItem('nickName')
+    if(!nickName) return ;
+    this.commonService.addsupport(tableKey).subscribe(
+      data=>{
+        this.getListPage(1,10)
+      }
+    )
   }
 }

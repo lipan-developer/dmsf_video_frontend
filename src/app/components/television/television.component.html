@@ -35,7 +35,7 @@
                   <h3>{{item.title}}</h3>
                   <p>{{item.actor}}</p>
                   <p>{{item.smallDescible}}</p>
-                  <p><a href="#" class="btn btn-primary" role="button">赞({{item.support}})</a> <a href="#" routerLink="/television/details/2/{{item.tableKey}}"
+                  <p><a (click)="addsupport(item.tableKey)" class="btn btn-primary" role="button">赞({{item.support}})</a> <a href="#" routerLink="/television/details/2/{{item.tableKey}}"
                       class="btn btn-default" role="button">播放</a></p>
                 </div>
               </div>

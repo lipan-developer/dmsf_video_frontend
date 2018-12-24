@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TelevisionService } from '../../services/television/television.service'
+import { CommonService } from '../../services/common/common.service'
+import { StorageService } from '../../services/storage/storage.service'
 
 @Component({
   selector: 'app-television',
@@ -26,7 +28,7 @@ export class TelevisionComponent implements OnInit {
     data:[]
   }
   totalPages:any = []
-  constructor(private televisionService:TelevisionService) { }
+  constructor(private televisionService:TelevisionService,private commonService : CommonService,private storageService :StorageService) { }
   
 
   ngOnInit() {
@@ -67,5 +69,13 @@ getListPage(page:Number,size:Number){
       this.hotTelevisions = { data:[] }
     }
   }
-
+  addsupport(tableKey:String){
+    let nickName = this.storageService.getItem('nickName')
+    if(!nickName) return ;
+    this.commonService.addsupport(tableKey).subscribe(
+      data=>{
+        this.getListPage(1,10)
+      }
+    )
+  }
 }
