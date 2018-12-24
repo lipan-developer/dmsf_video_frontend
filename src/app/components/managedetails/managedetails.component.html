@@ -1,0 +1,123 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink='/home' routerLinkActive='active'>主页</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a routerLink='/movie' routerLinkActive='active'>电影
+            <!-- <span class="sr-only" >(current)</span> -->
+          </a>
+        </li>
+        <li><a routerLink='/television' routerLinkActive='active'>电视剧</a></li>
+        <li><a routerLink='/animation' routerLinkActive='active'>动漫</a></li>
+        <li *ngIf="auth==1"><a routerLink='/manage' routerLinkActive='active'>管理</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- <form class="navbar-form navbar-left">
+                      <input type="text" [(ngModel)]="searchValue" name = "searchValue" class="form-control" placeholder="Search">
+                    <button (click)="getSeachResult()" class="btn btn-default">搜索</button>
+                  </form> -->
+        <li *ngIf="nickName"><a href="#">欢迎您,{{nickName}}</a></li>
+        <li><a href="#">帮助</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">操作
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/user/details/1">注册</a></li>
+            <li><a routerLink="/login/details">登录</a></li>
+            <li *ngIf="nickName"><a (click)="removeStorage()">注销</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">联系我们</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<h3>影片名称:{{title}}</h3>
+
+
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-11"></div>
+    <button class="col-md-1 btn btn-primary" style="margin-bottom:20px;" (click)="openModal('')">新增影片</button>
+  </div>
+
+  <table class="table table-bordered .table-hover ">
+    <tr class="info">
+      <th style="text-align:center">集数</th>
+      <th style="text-align:center">url地址</th>
+      <th style="text-align:center">备注</th>
+      <th style="text-align:center">操作</th>
+    </tr>
+    <tr *ngFor="let item of data.data.content">
+      <td class=" col-md-3">{{item.episodeNumber}}</td>
+      <td class=" col-md-3">{{item.url}}</td>
+      <td class=" col-md-3">{{item.remark}}</td>
+      <td class=" col-md-3">
+        <div class="row">
+          <a class="col-md-6" type="button" (click)="openModal(item)">编辑</a>
+          <a class="col-md-6" type="button" (click)="deleteData(item)">删除</a>
+        </div>
+      </td>
+    </tr>
+  </table>
+  
+  <!-- 分页条 -->
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li>
+        <a (click)="getListPage(1,10)" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li *ngFor="let item of totalPages"><a (click)="getListPage(item,10)">{{item}}</a></li>
+      <li>
+        <a (click)="getListPage(data.data.totalPages,10)" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  
+
+     
+<bs-modal #modal cssClass="main-modal">
+    <bs-modal-header>
+        <h4 class="modal-title" *ngIf="item.tableKey">编辑影片</h4>
+        <h4 class="modal-title" *ngIf="!item.tableKey">新增影片</h4>
+    </bs-modal-header>
+    <bs-modal-body>
+      <div class="row" style="margin-top: 40px;">
+        <div class="col-md-3"><label for="episodeNumber" >集数</label></div>
+        <div class="col-md-9"> <input type="text" name = "episodeNumber" [(ngModel)]="item.episodeNumber" class="form-control" id="episodeNumber" placeholder="集数"></div>
+    </div>
+    <div class="row" style="margin-top: 40px;">
+        <div class="col-md-3"><label for="actor" >url地址</label></div>
+        <div class="col-md-9"> <input type="text" name="url" [(ngModel)]="item.url" class="form-control" id="url" placeholder="url地址"></div>
+    </div>
+    <div class="row" style="margin-top: 40px;">
+      <div class="col-md-3"><label for="describeInfo" >备注</label></div>
+      <div class="col-md-9"> <input type="text" name="describeInfo" [(ngModel)]="item.remark" class="form-control" id="remark" placeholder="备注"></div>
+  </div>
+    </bs-modal-body>
+    <bs-modal-footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="cancalSubmit()">取消</button>
+        <button type="button" class="btn btn-primary" (click)="submitData()">提交</button>
+        <!-- modal.close() modal.dismiss() -->
+    </bs-modal-footer>
+  </bs-modal>
+  </div>

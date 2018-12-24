@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { HomeService } from '../../services/home/home.service'
-
+import { CommonService } from '../../services/common/common.service'
+import { StorageService } from '../../services/storage/storage.service'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -49,7 +50,7 @@ export class HomeComponent implements OnInit {
   openAnimation: boolean = false
   type: String = "0"
   totalPages: any = [];
-  constructor(private homeService: HomeService) { }
+  constructor(private homeService: HomeService,private commonService : CommonService,private storageService :StorageService) { }
 
   ngOnInit() {
     this.getListPage(1,10)
@@ -104,5 +105,13 @@ export class HomeComponent implements OnInit {
     this.homeService.getHot3ForAll().subscribe(data => this.hots = data)
   }
 
-
+  addsupport(tableKey:String){
+    let nickName = this.storageService.getItem('nickName')
+    if(!nickName) return ;
+    this.commonService.addsupport(tableKey).subscribe(
+      data=>{
+        this.getListPage(1,10)
+      }
+    )
+  }
 }

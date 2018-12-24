@@ -8,7 +8,7 @@ import { DetailsComponent } from './components/details/details.component'
 import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/login/login.component';
 import { ManageComponent } from './components/manage/manage.component'
-
+import { ManagedetailsComponent } from './components/managedetails/managedetails.component'
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
@@ -23,6 +23,7 @@ const routes: Routes = [
   {path:'login/details',component:LoginComponent},
   {path:'user/edit',component:UserComponent},
   {path:'manage',component:ManageComponent},
+  {path:'managedetails/:tableKey/:title',component:ManagedetailsComponent},
   {
     path:'',redirectTo:'/home',pathMatch:'full'
   },

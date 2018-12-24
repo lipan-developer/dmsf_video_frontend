@@ -31,6 +31,7 @@ import {VgBufferingModule} from 'videogular2/buffering';
 import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/login/login.component';
 import { ManageComponent } from './components/manage/manage.component';
+import { ManagedetailsComponent } from './components/managedetails/managedetails.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ManageComponent } from './components/manage/manage.component';
     DetailsComponent,
     UserComponent,
     LoginComponent,
-    ManageComponent
+    ManageComponent,
+    ManagedetailsComponent
   ],
   imports: [
     BrowserModule,

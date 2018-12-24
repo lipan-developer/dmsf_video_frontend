@@ -19,4 +19,8 @@ export class CommonService {
     return this.httpClient.post(`${environment.requestUrl}/dmsf/common/getSeachResult?searchValue=${searchValue}&type=${type}&page=${page}&size=${size}`,null)
   }
 
+
+  addsupport(tableKey:String){
+    return this.httpClient.post(`${environment.requestUrl}/dmsf/common/addsupport?tableKey=${tableKey}`,null)
+  }
 }

@@ -118,8 +118,8 @@
     <td class=" col-md-2">
       <div class="row">
         <a class="col-md-3" type="button" (click)="openModal(item)">编辑</a>
-        <a class="col-md-6" type="button" (click)="expression" >配置详情</a>
-        <a class="col-md-3" type="button" (click)="expression">删除</a>
+        <a class="col-md-6" type="button"  routerLink="/managedetails/{{item.tableKey}}/{{item.title}}" >配置详情</a>
+        <a class="col-md-3" type="button" (click)="deleteData(item)">删除</a>
       </div>
     </td>
   </tr>
@@ -146,14 +146,58 @@
    
 <bs-modal #modal cssClass="main-modal">
   <bs-modal-header>
-      <h4 class="modal-title">I'm a modal!</h4>
+      <h4 class="modal-title" *ngIf="item.tableKey">编辑影片</h4>
+      <h4 class="modal-title" *ngIf="!item.tableKey">新增影片</h4>
   </bs-modal-header>
   <bs-modal-body>
-      Hello World!
+    <div class="row" style="margin-top: 40px;">
+      <div class="col-md-3"><label for="title" >标题</label></div>
+      <div class="col-md-9"> <input type="text" name = "title" [(ngModel)]="item.title" class="form-control" id="title" placeholder="标题"></div>
+  </div>
+  <div class="row" style="margin-top: 40px;">
+      <div class="col-md-3"><label for="actor" >演员</label></div>
+      <div class="col-md-9"> <input type="text" name="actor" [(ngModel)]="item.actor" class="form-control" id="actor" placeholder="演员"></div>
+  </div>
+  <div class="row" style="margin-top: 40px;">
+    <div class="col-md-3"><label for="item.actor" >类型</label></div>
+    <div class="form-group col-md-9">
+      <select class="selectpicker show-tick col-md-12"
+       style="
+       height: 34px;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #555;
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #ccc;
+      border-radius: 4px;" title="影片类别" data-live-search="true" [(ngModel)]="item.type" name='type'>
+        <!-- <option value="0">--请选择影片类别--</option> -->
+        <option value="1">电影</option>
+        <option value="2">电视剧</option>
+        <option value="3">动漫</option>
+      </select>
+  </div>  
+  </div>
+  <div class="row" style="margin-top: 40px;">
+    <div class="col-md-3"><label for="describeInfo" >描述</label></div>
+    <div class="col-md-9"> <input type="text" name="describeInfo" [(ngModel)]="item.describeInfo" class="form-control" id="describeInfo" placeholder="描述"></div>
+</div>
+<div class="row" style="margin-top: 40px;">
+  <div class="col-md-3"><label for="showTime" >上映时间</label></div>
+  <div class="col-md-9"> <input type="date" name="describeInfo" [(ngModel)]="item.showTime" class="form-control" id="showTime" placeholder="上映时间"></div>
+</div>
+<div class="row" style="margin-top: 40px;">
+  <div class="col-md-3"><label for="picture" >图片地址</label></div>
+  <div class="col-md-9"> <input type="text" name="item.picture" [(ngModel)]="item.picture" class="form-control" id="describeInfo" placeholder="图片地址"></div>
+</div>
   </bs-modal-body>
   <bs-modal-footer>
-      <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">取消</button>
-      <button type="button" class="btn btn-primary" (click)="modal.close()">确定</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal" (click)="cancalSubmit()">取消</button>
+      <button type="button" class="btn btn-primary" (click)="submitData()">提交</button>
+      <!-- modal.close() modal.dismiss() -->
   </bs-modal-footer>
 </bs-modal>
 </div>
+
+<router-outlet></router-outlet>

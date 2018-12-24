@@ -15,7 +15,7 @@ export class ManageComponent implements OnInit {
     this.auth = this.storageService.getItem('auth');
   }
 
-  @ViewChild("modal") modal
+  @ViewChild("modal") modal:any
 
   nickName:String;
   auth:String;
@@ -28,7 +28,16 @@ export class ManageComponent implements OnInit {
     }
   }
   totalPages:any
-  item:any
+  item:any = {
+    tableKey:String,
+    title:String,
+    actor:String,
+    type:String ,
+    showTime:Date,
+    describeInfo:String ,
+    picture:String,
+    updateUser:String
+  }
   ngOnInit() {
     this.getListPage(1,10);
   }
@@ -67,8 +76,51 @@ export class ManageComponent implements OnInit {
 
   openModal(item:Object){
     this.item = item;
+    if(!this.item) {
+      this.item = {
+        tableKey:String,
+        title:String,
+        actor:String,
+        type:String ,
+        showTime:String,
+        describeInfo:String ,
+        picture:String
+      }
+      this.item.type= '1'
+      this.item.tableKey= ''
+      this.item.actor= ''
+      this.item.title= ''
+      this.item.showTime= ''
+      this.item.describeInfo= ''
+      this.item.picture= ''
+    }
     console.info(item)
     this.modal.open()
   }
 
+
+  submitData(){
+    this.item.updateUser = this.storageService.getItem('nickName')
+    this.manageService.submitData(this.item).subscribe(data =>{
+      this.modal.close();
+      this.searchResult(1,10);}
+    );
+    
+  }
+
+  cancalSubmit(){
+    this.item = {}
+    this.modal.dismiss();
+  }
+
+
+  deleteData(item:any){
+    this.item = item;
+    this.manageService.deleteData(this.item.tableKey).subscribe(data =>{
+      this.searchResult(1,10);}
+    );
+  }
+
+
+  
 }
