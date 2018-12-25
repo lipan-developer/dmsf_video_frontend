@@ -94,7 +94,6 @@ export class ManageComponent implements OnInit {
       this.item.describeInfo= ''
       this.item.picture= ''
     }
-    console.info(item)
     this.modal.open()
   }
 
