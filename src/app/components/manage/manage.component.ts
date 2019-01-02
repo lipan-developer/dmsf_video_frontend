@@ -44,10 +44,34 @@ export class ManageComponent implements OnInit {
 
 
   getListPage(page:Number,size:Number){
-    this.manageService.getSeachResult(1,10,this.title,this.actor,this.type).subscribe(
+    this.manageService.getSeachResult(page,size,this.title,this.actor,this.type).subscribe(
       data=>{
         this.data = data
         this.totalPages = []
+        if (this.data.data.totalPages > 7) {
+          // 首页显示 1，2，3，4，5，6，7，...
+          if (page <= 7) {
+            for (let i = 1; i <= 7; i++) {
+              this.totalPages.push(i);
+            }
+            this.totalPages.push(8);
+            this.totalPages.push('...')
+          }
+          if(page >= 8 && page <= this.data.data.totalPages -7){
+            this.totalPages.push('...')
+            for (let i = (Number)(page)-3; i <= (Number)(page)+ 3; i++) {
+              this.totalPages.push(i);
+            }
+            this.totalPages.push('...')
+          }
+          if(page > this.data.data.totalPages -7){
+            this.totalPages.push('...')
+            for (let i = this.data.data.totalPages -7; i <= this.data.data.totalPages; i++) {
+              this.totalPages.push(i);
+            }
+          }
+          return
+        }
         for(let i = 1; i <= this.data.data.totalPages; i++) {
            this.totalPages.push(i);
          }
@@ -68,8 +92,8 @@ export class ManageComponent implements OnInit {
   }
 
 
-  searchResult(page:Number,size:Number){
-    this.getListPage(page,size)
+  searchResult(){
+    this.getListPage(1,10)
   }
 
 
@@ -102,7 +126,7 @@ export class ManageComponent implements OnInit {
     this.item.updateUser = this.storageService.getItem('nickName')
     this.manageService.submitData(this.item).subscribe(data =>{
       this.modal.close();
-      this.searchResult(1,10);}
+      this.searchResult();}
     );
     
   }
@@ -116,7 +140,7 @@ export class ManageComponent implements OnInit {
   deleteData(item:any){
     this.item = item;
     this.manageService.deleteData(this.item.tableKey).subscribe(data =>{
-      this.searchResult(1,10);}
+      this.searchResult();}
     );
   }
 

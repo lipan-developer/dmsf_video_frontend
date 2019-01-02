@@ -32,7 +32,7 @@ export class TelevisionComponent implements OnInit {
   
 
   ngOnInit() {
-    this.getListPage(1,10)
+    this.getListPage(1,12)
   }
 
 
@@ -40,6 +40,30 @@ getListPage(page:Number,size:Number){
     this.televisionService.listPage(page,size).subscribe(data => {
       this.totalPages = []
       this.data = data;
+      if (this.data.data.totalPages > 7) {
+        // 首页显示 1，2，3，4，5，6，7，...
+        if (page <= 7) {
+          for (let i = 1; i <= 7; i++) {
+            this.totalPages.push(i);
+          }
+          this.totalPages.push(8);
+          this.totalPages.push('...')
+        }
+        if(page >= 8 && page <= this.data.data.totalPages -7){
+          this.totalPages.push('...')
+          for (let i = (Number)(page)-3; i <= (Number)(page)+ 3; i++) {
+            this.totalPages.push(i);
+          }
+          this.totalPages.push('...')
+        }
+        if(page > this.data.data.totalPages -7){
+          this.totalPages.push('...')
+          for (let i = this.data.data.totalPages -7; i <= this.data.data.totalPages; i++) {
+            this.totalPages.push(i);
+          }
+        }
+        return
+      }
        for(let i = 1; i <= this.data.data.totalPages; i++) {
          this.totalPages.push(i);
        }
@@ -49,6 +73,30 @@ getListPage(page:Number,size:Number){
   provinceOut(event: any) {
     this.data = event
     this.totalPages = []
+    if (this.data.data.totalPages > 7) {
+      // 首页显示 1，2，3，4，5，6，7，...
+      if (this.data.data.pageable.pageNumber + 1 <= 7) {
+        for (let i = 1; i <= 7; i++) {
+          this.totalPages.push(i);
+        }
+        this.totalPages.push(8)
+        this.totalPages.push('...')
+      }
+      if(this.data.data.pageable.pageNumber + 1 >= 8 && this.data.data.pageable.pageNumber + 1 <= this.data.data.totalPages -7){
+        this.totalPages.push('...')
+        for (let i = (Number)(this.data.data.pageable.pageNumber + 1)-3; i <= (Number)(this.data.data.pageable.pageNumber + 1)+ 3; i++) {
+          this.totalPages.push(i);
+        }
+        this.totalPages.push('...')
+      }
+      if(this.data.data.pageable.pageNumber + 1 > this.data.data.totalPages -7){
+        this.totalPages.push('...')
+        for (let i = this.data.data.totalPages -7; i <= this.data.data.totalPages; i++) {
+          this.totalPages.push(i);
+        }
+      }
+      return
+    }
     for(let i = 1; i <= this.data.data.totalPages; i++) {
        this.totalPages.push(i);
      }
@@ -63,7 +111,7 @@ getListPage(page:Number,size:Number){
   }
   getHotTelevision(){
     this.openHotTelevision = !this.openHotTelevision
-    if(this.openNewTelevision){
+    if(this.openHotTelevision){
       this.televisionService.getHotTelevision().subscribe(data=>this.hotTelevisions = data)
     }else{
       this.hotTelevisions = { data:[] }
@@ -74,7 +122,7 @@ getListPage(page:Number,size:Number){
     if(!nickName) return ;
     this.commonService.addsupport(tableKey).subscribe(
       data=>{
-        this.getListPage(1,10)
+        this.getListPage(1,12)
       }
     )
   }

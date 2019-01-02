@@ -5,7 +5,7 @@
     <!-- 电影海报激活 -->
     <div class="carousel-inner" role="listbox">
         <div class="item active" >
-            <img src='{{hots.data[0].picture}}' [alt]='hots.data[0].title'>
+            <img src='{{hots.data[0].picture}}' style="height: 300px; width: 240px; "  [alt]='hots.data[0].title'>
             <div class="carousel-caption">
               {{hots.data[0].describeInfo}}
             </div>
@@ -13,14 +13,14 @@
     
   <!-- 电视剧海报 -->
         <div class="item" >
-            <img src='{{hots.data[1].picture}}' [alt]='hots.data[1].title'>
+            <img src='{{hots.data[1].picture}}' style="height: 300px; width: 240px; "  [alt]='hots.data[1].title'>
             <div class="carousel-caption">
               {{hots.data[1].describeInfo}}
             </div>
           </div>
   <!-- 动漫海报 -->
         <div class="item" >
-            <img src='{{hots.data[2].picture}}' [alt]='hots.data[2].title'>
+            <img src='{{hots.data[2].picture}}' style="height: 300px; width: 240px;" [alt]='hots.data[2].title'>
             <div class="carousel-caption">
               {{hots.data[2].describeInfo}}
             </div>
@@ -70,9 +70,15 @@
                         <div class="thumbnail">
                           <img data-src="holder.js/100%x200" alt="100%x200" src='{{item.picture}}'  data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
                           <div class="caption">
-                            <h3>{{item.title}}</h3>
-                            <p>{{item.actor}}</p>
-                            <p>{{item.smallDescible}}</p>
+                            <h3 style="  text-overflow: ellipsis;
+                            white-space: nowrap;
+                            overflow: hidden;">{{item.title}}</h3>
+                            <p style="  text-overflow: ellipsis;
+                            white-space: nowrap;
+                            overflow: hidden;">{{item.actor}}</p>
+                            <p style="  text-overflow: ellipsis;
+                            white-space: nowrap;
+                            overflow: hidden;">{{item.smallDescible}}</p>
                             <p><a (click)="addsupport(item.tableKey)" class="btn btn-primary" role="button">赞({{item.support}})</a> <a href="#" routerLink="/home/details/0/{{item.tableKey}}"  class="btn btn-default" role="button">播放</a></p>
                           </div>
                         </div>
@@ -86,13 +92,15 @@
       <nav aria-label="Page navigation">
           <ul class="pagination">
             <li >
-              <a (click)="common.getListPage(0,1,10)" aria-label="Previous">
+              <a (click)="common.getListPage(0,1,12)" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li *ngFor="let item of totalPages"><a (click)="common.getListPage(0,item,10)">{{item}}</a></li>
+            <li *ngFor="let item of totalPages">
+                <a *ngIf="item == '...'" disabled="disabled">...</a>
+              <a  *ngIf="item != '...'" (click)="common.getListPage(0,item,12)">{{item}}</a></li>
             <li >
-              <a (click)="common.getListPage(0,data.data.totalPages,10)" aria-label="Next">
+              <a (click)="common.getListPage(0,data.data.totalPages,12)" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
